@@ -2,7 +2,7 @@ let fs = require("fs")
 let child_process = require("child_process")
 let os = require("os")
 
-let capture = new Promise(async function capture(resolve, reject) {
+async function cap(resolve, reject) {
   // 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
   let location = `${os.tmpdir()}/tmp-${new Date().getTime()}.png`
   let args = []
@@ -30,12 +30,20 @@ let capture = new Promise(async function capture(resolve, reject) {
     reject(data)
   })
   cap.on("close", function(code) {
+    console.log(code)
     if(code == 1) resolve(false)
     if(code != 0) reject(`Unknown error. Command exited with error code ${code}`)
     // We shouldn't have any other errors?
-    resolve(fs.createReadStream(location))
+    fs.readFile(location, function(err, buffer) {
+      if(err) return reject(err)
+      resolve(buffer)
+    })
   })
-})
+}
+
+function capture() {
+  return new Promise(cap)
+}
 
 module.exports = {
   capture: capture

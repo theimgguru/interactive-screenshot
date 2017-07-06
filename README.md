@@ -7,10 +7,10 @@ It's licensed under GPL-3.0 so many open source projects can use it! Syntax is s
 For example, the following code saves a screenshot to `/screenshot.png`
 ```JS
 let interactiveScreenshot = require("interactive-screenshot")
+let fs = require("fs")
 
-interactiveScreenshot.capture().then(function(stream) {
-  let write = fs.createWriteStream("/image.png")
-  stream.pipe(write)
+interactiveScreenshot.capture().then(function(buffer) {
+  fs.writeFile("/screenshot.png", buffer)
 }).catch(function(err) {
   console.log(err)
 })
