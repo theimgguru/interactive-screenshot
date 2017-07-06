@@ -1,5 +1,6 @@
 let fs = require("fs")
 let child_process = require("child_process")
+let os = require("os")
 
 async function capture() {
   // 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
