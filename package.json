@@ -1,6 +1,6 @@
 {
   "name": "interactive-screenshot",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A cross-platform interactive screenshot module with promises!",
   "main": "index.js",
   "scripts": {

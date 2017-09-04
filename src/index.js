@@ -13,7 +13,8 @@ async function cap(resolve, reject) {
       break
     }
     case "linux": {
-      binary = "import"
+      binary = "maim"
+      args.push("-s")
       break
     }
     case "win32": {
